@@ -133,12 +133,12 @@
         let id = ids[position];
         let imgElement = document.getElementById(id);
         if (position === treasureLocation) {
-            imgElement.src = "treasure.jpg";
+            imgElement.src = "Treasure.jpg";
             checkCount++;
             gameOver = true;
             penalty -= 3;
         } else if (position === trapLocation) {
-            imgElement.src = "trap.jpg";
+            imgElement.src = "Trap.jpg";
             checkCount++;
             gameOver = true;
             penalty += 4;
