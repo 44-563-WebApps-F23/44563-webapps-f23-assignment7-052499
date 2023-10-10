@@ -152,7 +152,29 @@
         document.getElementById("penalty").innerText = " Penalty is " + penalty;
         lastCheck = position;
     }
-    
+    function help() 
+        {
+            let treasureRow = Math.floor(treasureLocation / 5);
+            let treasureCol = treasureLocation % 5;
+            let lastLocationRow = Math.floor(lastCheck / 5);
+            let lastLocationCol = lastCheck % 5;
+            let rowDifference = Math.abs(treasureRow - lastLocationRow);
+            let colDifference = Math.abs(treasureCol - lastLocationCol);
+
+        if ((rowDifference === 1 && colDifference <= 1) || (colDifference === 1 && rowDifference <= 1)) {
+            document.getElementById("help").textContent = "Can smell it";
+        } else if (rowDifference + colDifference === 2) {
+            document.getElementById("help").textContent = "Close Matie";
+        } else {
+            document.getElementById("help").textContent = "Step Faster";
+        }
+        penalty += 2;
+        document.getElementById("penalty").textContent = "Penalty: " + penalty;
+    }
+    </script>
+</body>
+</html>
+
         
 
 
