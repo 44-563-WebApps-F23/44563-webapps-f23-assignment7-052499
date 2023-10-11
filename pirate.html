@@ -17,15 +17,22 @@
   <form class="ui container">
     <h1>Find the treasure by Khalida</h1>
 
-    <p>Click on the locations to search for treasure, beware the traps!!!!</p>
+    <p>
+      Click on the locations to search for treasure, beware of the traps!!!!
+    </p>
     <br />
-    <p id="locations">Number of locations checked is 0.</p>
-    <p id="penalty">Penalty is 0.</p>
-    <p>Click for help.</p>
-    <p id="help">Help report</p>
+    <div class="ui grid">
+      <div class="four wide column">
+        <p id="locations">Number of locations checked is 0.</p>
+      </div>
+      <div class="four wide column"><p id="penalty">Penalty is 0.</p></div>
+      <div class="eight wide column">
+        <button id="clickHelp"><p onclick="help()">Click for help</p></button>
+        <p id="help">Help report</p>
+      </div>
+    </div>
     <br />
   </form>
-
 
   <div class="ui grid container">
     <div class="row">
