@@ -115,94 +115,78 @@
     </div>
   </div>
   <script>
-    let ids=['id0','id1','id2','id3','id4','id5','id6','id7','id8','id9','id10','id11','id12','id13',
-    'id14','id15','id16','id17','id18','id19','id20','id21','id22','id23','id24']
-    let checkCount=0
-    let penalty=0
-    let lastCheck=0
-    let treasureLocation=5
-    let trapLocation=18
-    let gameOver=false
-    let result="Help report";
-
-    function check(position){
-        if(!gameOver){
-            console.log(position)
-           let selectedid= ids[position]
-           console.log(selectedid)
-           if(position==treasureLocation){
-                document.getElementById(selectedid).src="Treasure.jpg"
-                gameOver=true
-                penalty-=3
-            }
-           else if(position==trapLocation){
-                document.getElementById(selectedid).src="Trap.jpg"
-                gameOver=true
-                penalty+=4
-            }
-            else{
-                document.getElementById(selectedid).src="pirate.jpg"
-            }
-                checkCount++
-                penalty++
-        
-            lastCheck=position
-            console.log("checkCount"+checkCount)
-            console.log("penality"+penalty)
-            document.getElementById("locations").innerHTML="Number of locations checked is "+checkCount+"."
-            document.getElementById("penalty").innerHTML="Penalty is "+penalty+"."
-            document.getElementById("help").innerHTML = result;
-            //document.getElementById("penalty").innerHTML="Penalty is "+penalty+"."
-
-            
-        
+    var ids = [
+        "location0", "location1", "location2", "location3", "location4", "location5", "location6", "location7", "location8", "location9", "location10", "location11",
+        "location12", "location13", "location14", "location15", "location16", "location17", "location18", "location19", "location20", "location21", "location22",
+        "location23", "location24",
+    ];
+    var checkCount = 0;
+    var penalty = 0;
+    var lastCheck = 0;
+    var treasureLocation = 5;
+    var trapLocation = 18;
+    var gameOver = false;
+    function check(position) {
+        if (gameOver) {
+            return;
         }
-        if(gameOver){
-            return
+        let id = ids[position];
+        let imgElement = document.getElementById(id);
+        if (position === treasureLocation) {
+            imgElement.src = "treasure.jpg";
+            checkCount++;
+            gameOver = true;
+            penalty -= 3;
+        } else if (position === trapLocation) {
+            imgElement.src = "trap.jpg";
+            checkCount++;
+            gameOver = true;
+            penalty += 4;
+        } else {
+            imgElement.src = "pirate.jpg";
+            checkCount++;
+            penalty++;
         }
-
+        document.getElementById("locations").innerText =
+            "Number of locations checked is " + checkCount;
+        document.getElementById("penalty").innerText = " Penalty is " + penalty;
+        lastCheck = position;
     }
-    function help(){
-        res=" "
-            if (gameOver) 
-            return res;
-        console.log("lastCheck"+lastCheck)
-        let row = Math.floor(lastCheck / 5);
-        console.log("row"+row)
-        let col = lastCheck % 5;
-        console.log("col"+col)
-        let treasureRow = Math.floor(treasureLocation / 5);
-        console.log("treasureRow"+treasureRow)
-        let treasureCol = treasureLocation % 5;
-        console.log("treasureCol"+treasureCol)
-        console.log("result"+res)
+    function help() {
+        let rowLast = Math.floor(lastCheck / 5);
+        let colLast = lastCheck % 5;
+        let rowTreasure = Math.floor(treasureLocation / 5);
+        let colTreasure = treasureLocation % 5;
 
-        if(Math.abs(treasureRow - row) <= 1 && Math.abs(treasureCol - col) <= 1){
-            res="Can smell it";
-            console.log("result"+res)
-
+        let rowDiff = Math.abs(rowLast - rowTreasure);
+        let colDiff = Math.abs(colLast - colTreasure);
+        if (
+            (rowDiff <= 1 && colDiff <= 1 && rowDiff !== colDiff) ||
+            (rowDiff === 2 && colDiff === 0) ||
+            (rowDiff === 0 && colDiff === 2)
+        ) {
+            document.getElementById("help").innerText = "Can Smell It";
+            document.getElementById("help").style.color = "red";
+            penalty += 2;
+        } else if (rowDiff <= 2 && colDiff <= 2) {
+            document.getElementById("help").innerText = "Close Matie";
+            document.getElementById("help").style.color = "orange";
+            penalty += 2;
+        } else {
+            document.getElementById("help").innerText = "Step Faster";
+            document.getElementById("help").style.color = "black";
+            penalty += 2;
         }
-        if(Math.abs(treasureRow - row) + Math.abs(treasureCol - col) == 2){
-            res="Close Matie"
-            console.log("result"+res)
-
-        }
-        if(!(Math.abs(treasureRow - row) <= 1 && Math.abs(treasureCol - col) <= 1 )&& !(Math.abs(treasureRow - row) + Math.abs(treasureCol - col) == 2)){
-            res="Step Faster"
-            console.log("result"+res)
-
-        }
-        penalty += 2
-        document.getElementById("help").innerHTML =res;
-        document.getElementById("penalty").innerHTML="Penalty is "+penalty+"."
-        return res
-       
+        document.getElementById("penalty").innerText = penalty;
     }
 
-           
+    for (let i = 0; i < 25; i++) {
+        ids.push("location" + i);
+    }
+    document.getElementById("help-button").addEventListener("click", help);
+</script>
 
-    
 
-   </script>
 </body>
-</html>	
+
+</html>
