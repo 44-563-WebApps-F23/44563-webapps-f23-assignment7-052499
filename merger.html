@@ -34,7 +34,7 @@
 		</div>
 	    <br>
         <br>
-        
+
         <input type="text" id="txt" value="Enter Text Element">
         <p>Press the button to add elements in the end</p>
         <button onclick="addEnd()">Add end</button>
@@ -74,7 +74,19 @@
             firstChild = flex.firstChild;
             flex.insertBefore(out, firstChild);
         }
-
+        function swap()
+       { 
+            let mergedtems = document.getElementsByClassName("merger")
+            let mergerItemsCount = mergedtems.length
+            let firstValue = mergedtems[Math.round(Math.random()*(mergerItemsCount-1))]
+            let secondValue = mergedtems[Math.round(Math.random()*(mergerItemsCount-1))]
+            let baseElement = firstValue.parentNode;
+            const sibling1 = firstValue.nextSibling === secondValue ? firstValue : firstValue.nextSibling;
+            secondValue.parentNode.insertBefore(firstValue, secondValue);
+            baseElement.insertBefore(secondValue, sibling1);
+    
+  }
+	
         
     </script>
 </html>	
