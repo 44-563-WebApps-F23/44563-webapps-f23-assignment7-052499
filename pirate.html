@@ -11,6 +11,7 @@
         background-color: #d1b2b2;
     }
   </style>
+
 </head>
 
 <body>
@@ -20,7 +21,7 @@
     <p>
       Click on the locations to search for treasure, beware of the traps!!!!
     </p>
-    <br />
+    <br>
     <div class="ui grid">
       <div class="four wide column">
         <p id="locations">Number of locations checked is 0.</p>
@@ -31,7 +32,7 @@
         <p id="help">Help report</p>
       </div>
     </div>
-    <br />
+    <br>
   </form>
 
   <div class="ui grid container">
@@ -183,5 +184,24 @@
       penaltyy.innerHTML = "Penalty is " + penalty;
       document.getElementById("help").textContent = helpmsg;
     }
+      var Trap, Treasure;
+
+        function resetGame() {
+            checkCount = 0;
+            penalty = 0;
+            lastCheck = 0;
+            gameOver = false;
+
+            Trap = Math.floor(Math.random() * 25);
+            Treasure = Math.floor(Math.random() * 25);
+            while (Trap === Treasure) {
+                Treasure = Math.floor(Math.random() * 25);
+            }
+            document.getElementById("locations").textContent = "Locations Checked: 0";
+            document.getElementById("penalty").textContent = "Penalty: 0";
+            document.getElementById("help").textContent = "";
+        }
+        id_location.innerHTML = `Number of locations checked is  ${checkCount}`;
+        id_penalty.innerHTML = `Penalty is ${penalty}`;
   </script>
 </body>
