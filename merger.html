@@ -27,6 +27,7 @@
     </head>
     <body>
         <h2>Khalida builds a merger</h2>
+        <button class="bg-danger"onclick="swap()">Swap</button><br><br>
 		<div class="flex" id="target">
 		  <div class="merger">row item 1</div>   
 		  <div class="merger">row item 2</div>  
@@ -75,19 +76,19 @@
             flex.insertBefore(out, firstChild);
         }
         function swap()
-  {
-    let mergerItemss = document.getElementsByClassName("merger")
-    let mergerItemssLength = mergerItemss.length
-    let firstElement = mergerItemss[Math.round(Math.random()*(mergerItemssLength-1))]
-    let secondElement = mergerItemss[Math.round(Math.random()*(mergerItemssLength-1))]
-
-    let parentElement = firstElement.parentNode
+        { 
+            let mergedtems = document.getElementsByClassName("merger")
+            let mergerItemsCount = mergedtems.length
+            let firstValue = mergedtems[Math.round(Math.random()*(mergerItemsCount-1))]
+            let secondValue = mergedtems[Math.round(Math.random()*(mergerItemsCount-1))]
+            let baseElement = firstValue.parentNode;
+            const sibling1 = firstValue.nextSibling === secondValue ? firstValue : firstValue.nextSibling;
+            secondValue.parentNode.insertBefore(firstValue, secondValue);
+            baseElement.insertBefore(secondValue, sibling1);
     
-    const siblingA = firstElement.nextSibling === secondElement ? firstElement : firstElement.nextSibling;
-    secondElement.parentNode.insertBefore(firstElement, secondElement);
-    parentElement.insertBefore(secondElement, siblingA);
-  }
+        }
 	
+        
         
     </script>
 </html>	
